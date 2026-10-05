@@ -264,7 +264,7 @@ module Aveecare
       VALUES = [LOW, MEDIUM, HIGH, CRITICAL].freeze
     end
 
-    # Where follow-up stands.
+    # Where follow-up stands. New incidents start `Open`.
     module IncidentStatus
       OPEN = "Open"
       MONITORING = "Monitoring"
@@ -3265,7 +3265,7 @@ module Aveecare
       # How serious it was.
       # @return [String, nil]
       attribute :severity, "severity"
-      # Where follow-up stands.
+      # Where follow-up stands. New incidents start `Open`.
       # @return [String, nil]
       attribute :status, "status"
       # The patient involved.
@@ -3319,8 +3319,7 @@ module Aveecare
       # How it was resolved.
       # @return [String, nil]
       attribute :resolution_notes, "resolutionNotes"
-      # Whether only administrators can see it. Set by office staff; ignored from a caregiver's
-      # key.
+      # Whether only administrators can see it.
       # @return [Boolean, nil]
       attribute :is_confidential, "isConfidential"
       # Who reported it.
@@ -3357,7 +3356,8 @@ module Aveecare
       # How serious it was.
       # @return [String, nil]
       attribute :severity, "severity"
-      # Where follow-up stands.
+      # Where follow-up stands. New incidents start `Open`. Only keys belonging to office staff
+      # can set this.
       # @return [String, nil]
       attribute :status, "status"
       # The patient involved.
@@ -3399,20 +3399,19 @@ module Aveecare
       # Whether follow-up is needed.
       # @return [Boolean, nil]
       attribute :follow_up_required, "followUpRequired"
-      # When follow-up is due.
+      # When follow-up is due. Only keys belonging to office staff can set this.
       # @return [String, nil]
       attribute :follow_up_due_at, "followUpDueAt"
       # Follow-up notes.
       # @return [String, nil]
       attribute :follow_up_notes, "followUpNotes"
-      # Whether the incident is resolved.
+      # Whether the incident is resolved. Only keys belonging to office staff can set this.
       # @return [Boolean, nil]
       attribute :resolved, "resolved"
-      # How it was resolved.
+      # How it was resolved. Only keys belonging to office staff can set this.
       # @return [String, nil]
       attribute :resolution_notes, "resolutionNotes"
-      # Whether only administrators can see it. Set by office staff; ignored from a caregiver's
-      # key.
+      # Whether only administrators can see it. Only keys belonging to office staff can set this.
       # @return [Boolean, nil]
       attribute :is_confidential, "isConfidential"
     end
@@ -3435,7 +3434,8 @@ module Aveecare
       # How serious it was.
       # @return [String, nil]
       attribute :severity, "severity"
-      # Where follow-up stands.
+      # Where follow-up stands. New incidents start `Open`. Only keys belonging to office staff
+      # can set this.
       # @return [String, nil]
       attribute :status, "status"
       # The patient involved.
@@ -3477,20 +3477,19 @@ module Aveecare
       # Whether follow-up is needed.
       # @return [Boolean, nil]
       attribute :follow_up_required, "followUpRequired"
-      # When follow-up is due.
+      # When follow-up is due. Only keys belonging to office staff can set this.
       # @return [String, nil]
       attribute :follow_up_due_at, "followUpDueAt"
       # Follow-up notes.
       # @return [String, nil]
       attribute :follow_up_notes, "followUpNotes"
-      # Whether the incident is resolved.
+      # Whether the incident is resolved. Only keys belonging to office staff can set this.
       # @return [Boolean, nil]
       attribute :resolved, "resolved"
-      # How it was resolved.
+      # How it was resolved. Only keys belonging to office staff can set this.
       # @return [String, nil]
       attribute :resolution_notes, "resolutionNotes"
-      # Whether only administrators can see it. Set by office staff; ignored from a caregiver's
-      # key.
+      # Whether only administrators can see it. Only keys belonging to office staff can set this.
       # @return [Boolean, nil]
       attribute :is_confidential, "isConfidential"
     end

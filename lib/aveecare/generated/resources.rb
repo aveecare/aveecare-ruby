@@ -3644,7 +3644,8 @@ module Aveecare
       # @param incident_date_time [String, Time, Date, nil] When the incident happened.
       # @param category [String, nil] Kind of incident.
       # @param severity [String, nil] How serious it was.
-      # @param status [String, nil] Where follow-up stands.
+      # @param status [String, nil] Where follow-up stands. New incidents start `Open`. Only keys
+      #   belonging to office staff can set this.
       # @param patient_id [String, nil] The patient involved.
       # @param caregiver_id [String, nil] The caregiver involved.
       # @param visit_id [String, nil] The visit during which it happened.
@@ -3660,12 +3661,15 @@ module Aveecare
       # @param regulatory_report_required [Boolean, nil] Whether the incident must be reported to
       #   a regulator.
       # @param follow_up_required [Boolean, nil] Whether follow-up is needed.
-      # @param follow_up_due_at [String, Time, Date, nil] When follow-up is due.
+      # @param follow_up_due_at [String, Time, Date, nil] When follow-up is due. Only keys
+      #   belonging to office staff can set this.
       # @param follow_up_notes [String, nil] Follow-up notes.
-      # @param resolved [Boolean, nil] Whether the incident is resolved.
-      # @param resolution_notes [String, nil] How it was resolved.
-      # @param is_confidential [Boolean, nil] Whether only administrators can see it. Set by
-      #   office staff; ignored from a caregiver's key.
+      # @param resolved [Boolean, nil] Whether the incident is resolved. Only keys belonging to
+      #   office staff can set this.
+      # @param resolution_notes [String, nil] How it was resolved. Only keys belonging to office
+      #   staff can set this.
+      # @param is_confidential [Boolean, nil] Whether only administrators can see it. Only keys
+      #   belonging to office staff can set this.
       # @param request_options [Hash, nil] +:idempotency_key+, +:timeout+, +:max_retries+, +:headers+
       # @return [Aveecare::Models::Incident]
       def create(
@@ -3752,7 +3756,8 @@ module Aveecare
       # @param incident_date_time [String, Time, Date, nil] When the incident happened.
       # @param category [String, nil] Kind of incident.
       # @param severity [String, nil] How serious it was.
-      # @param status [String, nil] Where follow-up stands.
+      # @param status [String, nil] Where follow-up stands. New incidents start `Open`. Only keys
+      #   belonging to office staff can set this.
       # @param patient_id [String, nil] The patient involved.
       # @param caregiver_id [String, nil] The caregiver involved.
       # @param visit_id [String, nil] The visit during which it happened.
@@ -3768,12 +3773,15 @@ module Aveecare
       # @param regulatory_report_required [Boolean, nil] Whether the incident must be reported to
       #   a regulator.
       # @param follow_up_required [Boolean, nil] Whether follow-up is needed.
-      # @param follow_up_due_at [String, Time, Date, nil] When follow-up is due.
+      # @param follow_up_due_at [String, Time, Date, nil] When follow-up is due. Only keys
+      #   belonging to office staff can set this.
       # @param follow_up_notes [String, nil] Follow-up notes.
-      # @param resolved [Boolean, nil] Whether the incident is resolved.
-      # @param resolution_notes [String, nil] How it was resolved.
-      # @param is_confidential [Boolean, nil] Whether only administrators can see it. Set by
-      #   office staff; ignored from a caregiver's key.
+      # @param resolved [Boolean, nil] Whether the incident is resolved. Only keys belonging to
+      #   office staff can set this.
+      # @param resolution_notes [String, nil] How it was resolved. Only keys belonging to office
+      #   staff can set this.
+      # @param is_confidential [Boolean, nil] Whether only administrators can see it. Only keys
+      #   belonging to office staff can set this.
       # @param request_options [Hash, nil] +:idempotency_key+, +:timeout+, +:max_retries+, +:headers+
       # @return [Aveecare::Models::Incident]
       def update(
