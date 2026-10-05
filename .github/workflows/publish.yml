@@ -1,0 +1,28 @@
+name: Publish to RubyGems
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: rubygems
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Check the tag matches the gem version
+        run: |
+          version=$(ruby -r ./lib/aveecare/version -e 'puts Aveecare::VERSION')
+          test "v${version}" = "${GITHUB_REF_NAME}"
+      - run: bundle exec rspec
+      - run: gem build aveecare.gemspec
+      - run: gem push aveecare-*.gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
