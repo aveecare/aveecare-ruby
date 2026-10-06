@@ -5,6 +5,7 @@
 module Aveecare
   module Models
     # Whether this person is a prospective client or an admitted client. `null` means client.
+    # Prospects appear in the prospective-patient pool in AveeCare, not on the patient roster.
     module PatientLifecycleStage
       PROSPECT = "Prospect"
       CLIENT = "Client"
@@ -46,7 +47,8 @@ module Aveecare
 
     # The client's status as shown in AveeCare. `Inactive` and `Discharged` mean the person is no
     # longer receiving care. A prospective client (`lifecycleStage: Prospect`) reads `Prospect`
-    # even if you send `Active`.
+    # even if you send `Active`. Creating a patient with `Prospect` makes them a prospective
+    # client. Defaults to `Active`.
     module PatientCreateStatus
       ACTIVE = "Active"
       INACTIVE = "Inactive"
@@ -435,16 +437,19 @@ module Aveecare
       # @return [String, nil]
       attribute :email, "email"
       # Whether the patient is an active client. Only active clients are scheduled and billed. A
-      # prospective client is always inactive.
+      # prospective client is always inactive. If you leave it out on create, it is `false` for a
+      # prospect or an `Inactive` or `Discharged` status and `true` otherwise.
       # @return [Boolean, nil]
       attribute :active, "active"
       # The client's status as shown in AveeCare. `Inactive` and `Discharged` mean the person is
       # no longer receiving care. A prospective client (`lifecycleStage: Prospect`) reads
-      # `Prospect` even if you send `Active`. Usually one of `Active`, `Inactive`, `Prospect`,
+      # `Prospect` even if you send `Active`. Creating a patient with `Prospect` makes them a
+      # prospective client. Defaults to `Active`. Usually one of `Active`, `Inactive`, `Prospect`,
       # `Discharged`; records imported from another system can hold other values.
       # @return [String, nil]
       attribute :status, "status"
       # Whether this person is a prospective client or an admitted client. `null` means client.
+      # Prospects appear in the prospective-patient pool in AveeCare, not on the patient roster.
       # @return [String, nil]
       attribute :lifecycle_stage, "lifecycleStage"
       # The main type of service the patient receives.
@@ -551,15 +556,18 @@ module Aveecare
       # @return [String, nil]
       attribute :email, "email"
       # Whether the patient is an active client. Only active clients are scheduled and billed. A
-      # prospective client is always inactive.
+      # prospective client is always inactive. If you leave it out on create, it is `false` for a
+      # prospect or an `Inactive` or `Discharged` status and `true` otherwise.
       # @return [Boolean, nil]
       attribute :active, "active"
       # The client's status as shown in AveeCare. `Inactive` and `Discharged` mean the person is
       # no longer receiving care. A prospective client (`lifecycleStage: Prospect`) reads
-      # `Prospect` even if you send `Active`.
+      # `Prospect` even if you send `Active`. Creating a patient with `Prospect` makes them a
+      # prospective client. Defaults to `Active`.
       # @return [String, nil]
       attribute :status, "status"
       # Whether this person is a prospective client or an admitted client. `null` means client.
+      # Prospects appear in the prospective-patient pool in AveeCare, not on the patient roster.
       # @return [String, nil]
       attribute :lifecycle_stage, "lifecycleStage"
       # The main type of service the patient receives.
@@ -658,15 +666,18 @@ module Aveecare
       # @return [String, nil]
       attribute :email, "email"
       # Whether the patient is an active client. Only active clients are scheduled and billed. A
-      # prospective client is always inactive.
+      # prospective client is always inactive. If you leave it out on create, it is `false` for a
+      # prospect or an `Inactive` or `Discharged` status and `true` otherwise.
       # @return [Boolean, nil]
       attribute :active, "active"
       # The client's status as shown in AveeCare. `Inactive` and `Discharged` mean the person is
       # no longer receiving care. A prospective client (`lifecycleStage: Prospect`) reads
-      # `Prospect` even if you send `Active`.
+      # `Prospect` even if you send `Active`. Creating a patient with `Prospect` makes them a
+      # prospective client. Defaults to `Active`.
       # @return [String, nil]
       attribute :status, "status"
       # Whether this person is a prospective client or an admitted client. `null` means client.
+      # Prospects appear in the prospective-patient pool in AveeCare, not on the patient roster.
       # @return [String, nil]
       attribute :lifecycle_stage, "lifecycleStage"
       # The main type of service the patient receives.
@@ -1429,7 +1440,8 @@ module Aveecare
       # Employment status.
       # @return [String, nil]
       attribute :status, "status"
-      # Whether the caregiver can be scheduled.
+      # Whether the caregiver can be scheduled. If you leave it out on create, it is `false` for
+      # an `Inactive` status and `true` otherwise.
       # @return [Boolean, nil]
       attribute :active, "active"
       # Date of birth.
@@ -1508,7 +1520,8 @@ module Aveecare
       # Employment status.
       # @return [String, nil]
       attribute :status, "status"
-      # Whether the caregiver can be scheduled.
+      # Whether the caregiver can be scheduled. If you leave it out on create, it is `false` for
+      # an `Inactive` status and `true` otherwise.
       # @return [Boolean, nil]
       attribute :active, "active"
       # Date of birth.
@@ -1579,7 +1592,8 @@ module Aveecare
       # Employment status.
       # @return [String, nil]
       attribute :status, "status"
-      # Whether the caregiver can be scheduled.
+      # Whether the caregiver can be scheduled. If you leave it out on create, it is `false` for
+      # an `Inactive` status and `true` otherwise.
       # @return [Boolean, nil]
       attribute :active, "active"
       # Date of birth.

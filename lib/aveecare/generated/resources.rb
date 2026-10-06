@@ -76,12 +76,16 @@ module Aveecare
       # @param primary_language [String, nil] Language the patient is most comfortable speaking.
       # @param email [String, nil] Contact email address.
       # @param active [Boolean, nil] Whether the patient is an active client. Only active clients
-      #   are scheduled and billed. A prospective client is always inactive.
+      #   are scheduled and billed. A prospective client is always inactive. If you leave it out on
+      #   create, it is `false` for a prospect or an `Inactive` or `Discharged` status and `true`
+      #   otherwise.
       # @param status [String, nil] The client's status as shown in AveeCare. `Inactive` and
       #   `Discharged` mean the person is no longer receiving care. A prospective client
-      #   (`lifecycleStage: Prospect`) reads `Prospect` even if you send `Active`.
+      #   (`lifecycleStage: Prospect`) reads `Prospect` even if you send `Active`. Creating a
+      #   patient with `Prospect` makes them a prospective client. Defaults to `Active`.
       # @param lifecycle_stage [String, nil] Whether this person is a prospective client or an
-      #   admitted client. `null` means client.
+      #   admitted client. `null` means client. Prospects appear in the prospective-patient pool in
+      #   AveeCare, not on the patient roster.
       # @param service_type [String, nil] The main type of service the patient receives.
       # @param address [String, nil] Street address where care is delivered.
       # @param city [String, nil] City of the service address.
@@ -214,12 +218,16 @@ module Aveecare
       # @param primary_language [String, nil] Language the patient is most comfortable speaking.
       # @param email [String, nil] Contact email address.
       # @param active [Boolean, nil] Whether the patient is an active client. Only active clients
-      #   are scheduled and billed. A prospective client is always inactive.
+      #   are scheduled and billed. A prospective client is always inactive. If you leave it out on
+      #   create, it is `false` for a prospect or an `Inactive` or `Discharged` status and `true`
+      #   otherwise.
       # @param status [String, nil] The client's status as shown in AveeCare. `Inactive` and
       #   `Discharged` mean the person is no longer receiving care. A prospective client
-      #   (`lifecycleStage: Prospect`) reads `Prospect` even if you send `Active`.
+      #   (`lifecycleStage: Prospect`) reads `Prospect` even if you send `Active`. Creating a
+      #   patient with `Prospect` makes them a prospective client. Defaults to `Active`.
       # @param lifecycle_stage [String, nil] Whether this person is a prospective client or an
-      #   admitted client. `null` means client.
+      #   admitted client. `null` means client. Prospects appear in the prospective-patient pool in
+      #   AveeCare, not on the patient roster.
       # @param service_type [String, nil] The main type of service the patient receives.
       # @param address [String, nil] Street address where care is delivered.
       # @param city [String, nil] City of the service address.
@@ -1283,7 +1291,8 @@ module Aveecare
       # @param goes_by_name [String, nil] The name the caregiver prefers to be called.
       # @param email [String, nil] Work email address.
       # @param status [String, nil] Employment status.
-      # @param active [Boolean, nil] Whether the caregiver can be scheduled.
+      # @param active [Boolean, nil] Whether the caregiver can be scheduled. If you leave it out
+      #   on create, it is `false` for an `Inactive` status and `true` otherwise.
       # @param date_of_birth [String, Time, Date, nil] Date of birth.
       # @param gender [String, nil] Gender as recorded by the agency.
       # @param primary_language [String, nil] Language the caregiver is most comfortable speaking.
@@ -1381,7 +1390,8 @@ module Aveecare
       # @param goes_by_name [String, nil] The name the caregiver prefers to be called.
       # @param email [String, nil] Work email address.
       # @param status [String, nil] Employment status.
-      # @param active [Boolean, nil] Whether the caregiver can be scheduled.
+      # @param active [Boolean, nil] Whether the caregiver can be scheduled. If you leave it out
+      #   on create, it is `false` for an `Inactive` status and `true` otherwise.
       # @param date_of_birth [String, Time, Date, nil] Date of birth.
       # @param gender [String, nil] Gender as recorded by the agency.
       # @param primary_language [String, nil] Language the caregiver is most comfortable speaking.
