@@ -54,12 +54,12 @@ RSpec.describe Aveecare::Client do
                                   "object" => "me", "id" => "Xk3mP9qR2tLw", "name" => "Payroll export",
                                   "scopes" => %w[read write], "role" => "RootUser", "email" => "avery@example.com",
                                   "expiresAt" => "2027-10-05T00:00:00.000Z",
-                                  "organization" => { "id" => "org_1", "name" => "Sunrise Home Care" }
+                                  "organization" => { "id" => "org_1", "name" => "AveeCare Demo Agency" }
                                 }))
       me = new_client.me.retrieve
       expect(stub).to have_been_requested
       expect(me.organization).to be_a(Aveecare::Models::MeOrganization)
-      expect(me.organization.name).to eq("Sunrise Home Care")
+      expect(me.organization.name).to eq("AveeCare Demo Agency")
       expect(me.scopes).to eq([Aveecare::Models::MeScope::READ, Aveecare::Models::MeScope::WRITE])
       expect(me.role).to eq(Aveecare::Models::MeRole::ROOT_USER)
       expect(WebMock).not_to have_requested(:get, "#{BASE}/v1/me").with(headers: { "Idempotency-Key" => /.*/ })
@@ -168,7 +168,7 @@ RSpec.describe Aveecare::Client do
 
     it "converts nested hashes (snake_case or wire keys) and models to wire JSON" do
       klass = Aveecare::Models::MeOrganization
-      expect(klass.to_wire({ id: "org_1", "name" => "Sunrise" })).to eq({ "id" => "org_1", "name" => "Sunrise" })
+      expect(klass.to_wire({ id: "org_1", "name" => "Demo Agency" })).to eq({ "id" => "org_1", "name" => "Demo Agency" })
       expect(klass.to_wire(klass.from_hash("id" => "org_2"))).to eq({ "id" => "org_2", "name" => nil })
       expect { klass.to_wire({ not_a_field: "x" }) }.to raise_error(ArgumentError, /not_a_field/)
       expect(Aveecare::Serialize.dump({ a: Time.utc(2026, 10, 5), b: [Date.new(2026, 10, 6), :sym] }))
